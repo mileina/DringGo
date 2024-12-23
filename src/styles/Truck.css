@@ -1,0 +1,65 @@
+.truck-container {
+    position: absolute;
+    bottom: 30%;
+    transform: translateX(-50%);
+    transition: left 2s ease, opacity 1s ease;
+    width: 30vw;
+    max-width: 250px;
+    height: auto;
+  }
+  
+  .truck {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .wheel {
+    position: absolute;
+    width: 20%;
+    aspect-ratio: 1;
+    background-color: black;
+    border-radius: 50%;
+    border: 2px solid #C4C5C7;
+    animation: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .wheel::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background: repeating-linear-gradient(
+      45deg,
+      #C4C5C7,
+      white 10%,
+      black 10%,
+      black 20%
+    );
+    border-radius: 50%;
+    animation: roll-reverse 2s linear infinite;
+  }
+  
+  @keyframes roll-reverse {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+  
+  .wheel-front {
+    bottom: 5%;
+    left: 12%;
+  }
+  
+  .wheel-back {
+    bottom: 5%;
+    right: 12%;
+  }
+  

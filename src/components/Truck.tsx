@@ -1,5 +1,6 @@
 import React from 'react';
 import truckImage from '../assets/truck.png';
+import '../styles/Truck.css';
 
 interface TruckProps {
   isStopped: boolean;
@@ -7,21 +8,17 @@ interface TruckProps {
 
 const Truck: React.FC<TruckProps> = ({ isStopped }) => {
   return (
-    <img
-      src={truckImage}
-      alt="Truck"
+    <div
+      className="truck-container"
       style={{
-        position: 'absolute',
-        bottom: '30%',
         left: isStopped ? '50%' : '100vw',
-        transform: 'translateX(-50%)',
-        transition: 'left 2s ease, opacity 1s ease',
         opacity: isStopped ? 1 : 0,
-        width: '30vw',
-        maxWidth: '250px', 
-        height: 'auto',
       }}
-    />
+    >
+      <img src={truckImage} alt="Truck" className="truck" />
+      <div className={`wheel wheel-front ${!isStopped ? 'rolling' : ''}`}></div>
+      <div className={`wheel wheel-back ${!isStopped ? 'rolling' : ''}`}></div>
+    </div>
   );
 };
 
