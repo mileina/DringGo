@@ -8,6 +8,7 @@ import KnockText from './KnockText';
 import LetterMessage from './LetterMessage';
 import Snowfall from 'react-snowfall';
 import '../styles/Truck.css';
+import { useParams } from 'react-router-dom';
 
 interface TruckProps {
   isStopped: boolean;
@@ -24,6 +25,15 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
   const [truckReturn, setTruckReturn] = useState(false);
   const [finishRoute, setFinishRoute] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+  const [letterId, setLetterId] = useState<number | null>(null);
+  const { id } = useParams<{ id: string }>(); // Récupérer l'ID depuis l'URL
+
+  useEffect(() => {
+    if (id) {
+      setLetterId(parseInt(id, 10)); // Convertir l'ID en nombre
+    }
+  }, [id]);
+
 
   const handleDoorClick = () => {
     if (!isAnimationComplete) return;
@@ -139,7 +149,8 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
         <>
           <LetterMessage
             isVisible
-            message="Désolé, je n’avais pas d’argent pour Noël. J’ai plutôt créé cette mini application pour te montrer que je ne t’ai pas oublié. 💖 Joyeux Noël !"
+            // ID de la lettre pour récupérer les données via l'API via lurl
+            letterId={letterId ?? 0}
           />
           <Snowfall
             style={{

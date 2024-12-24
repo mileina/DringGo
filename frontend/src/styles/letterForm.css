@@ -1,0 +1,232 @@
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to bottom, #1a237e, #3949ab);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .letter-container {
+    background: #fff8e1;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    font-family: 'Georgia', serif;
+    animation: fadeIn 1s ease-in-out;
+    position: relative;
+    z-index: 20; 
+  }
+  
+  .letter-container.animating {
+    animation: shrinkLetter 1.5s ease-in-out forwards, moveIntoEnvelope 1.5s ease-in-out 1.5s forwards;
+    z-index: 10; 
+  }
+  
+  .letter-container h2 {
+    margin-bottom: 10px;
+    color: #000;
+    font-size: 20px;
+  }
+  
+  .letter-header input,
+  .letter-body input,
+  .letter-body textarea {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #b7a391;
+    border-radius: 5px;
+    background: #fffdf5;
+    font-size: 14px;
+    font-family: 'Georgia', serif;
+  }
+  
+  .letter-body textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  .submit-button {
+    font-size: 16px;
+    color: white;
+    background-color: #d6336c;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .envelope {
+    position: absolute;
+    top: 50%;
+    left: 50%!important;
+    transform: translate(-50%, -50%);
+    width: 300px!important; 
+    height: 250px!important; 
+    background: #e3caa5;
+    border: 2px solid #b08d57;
+    border-radius: 5px;
+  }
+  
+  
+  .envelope::before,
+  .envelope::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    z-index: 15; 
+  }
+  
+  
+  .envelope::before {
+    bottom: 100%; 
+    left: 0;
+    border-width: 40px 100px 0 100px; 
+    border-color: #d8b48e transparent transparent transparent; 
+    transform-origin: bottom center; 
+  }
+  
+  
+  .envelope::after {
+    top: 100%; 
+    left: 0;
+    border-width: 0 100px 40px 100px; 
+    border-color: transparent transparent #e3caa5 transparent;
+  }
+
+  .envelope.fly-away {
+    animation: flyAwayEnvelope 2s ease-in-out forwards; 
+  }
+  
+  
+  @keyframes flyAwayEnvelope {
+    0% {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(200%, -200%);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes shrinkLetter {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.5);
+    }
+  }
+  
+  @keyframes moveIntoEnvelope {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(20px) scale(0.5);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeInEnvelope {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to bottom, #1a237e, #3949ab); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  
+  
+  .message-box {
+    background: #fff8e1; 
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    font-family: 'Georgia', serif;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  
+  .message-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .message-box p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #444;
+  }
+  
+  .message-box a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .message-box a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  .message-box .submit-button {
+    margin-top: 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #d6336c;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .message-box .submit-button:hover {
+    background-color: #a52754;
+  }
