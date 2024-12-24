@@ -3,7 +3,7 @@ import axiosClient from './axiosClient';
 export interface Letter {
     id?: number;
     text: string;
-    from: string;
+    sender: string;
     target: string;
 }
 

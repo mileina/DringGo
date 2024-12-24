@@ -33,7 +33,7 @@ const LetterPage: React.FC = () => {
   return (
     <div>
       <h1>Letter Details</h1>
-      <p><strong>From:</strong> {letter.from}</p>
+      <p><strong>From:</strong> {letter.sender}</p>
       <p><strong>To:</strong> {letter.target}</p>
       <p><strong>Text:</strong> {letter.text}</p>
     </div>

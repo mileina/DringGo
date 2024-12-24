@@ -22,15 +22,9 @@ services:
     volumes:
       - ./backend:/app
       # Exclure `node_modules` de l'hôte pour éviter des conflits
-      #- /app/node_modules
+      - /app/node_modules
     depends_on:
       - db
-    environment:
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: dringgo
-      DB_PASSWORD: dringgo
-      DB_NAME: dringgo
 
   frontend:
     build:
@@ -40,10 +34,10 @@ services:
       - "5173:5173"
     volumes:
       - ./frontend:/app
-      #- /app/node_modules
+      # Exclure `node_modules` de l'hôte pour éviter des conflits
+      - /app/node_modules
     depends_on:
       - backend
-
 
 volumes:
   db_data:

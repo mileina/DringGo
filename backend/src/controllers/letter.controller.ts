@@ -19,7 +19,7 @@ export const getOneLetter = async (req: Request, res: Response) => {
 export const createLetter = async (req: Request, res: Response) => {
   try {
     const { text, sender, target } = req.body;
-
+    console.log('Creating letter:', text, sender, target);
     // Vérifiez que les données nécessaires sont fournies
     if (!text || !sender || !target) {
       return res.status(400).json({ message: 'Invalid data provided' });

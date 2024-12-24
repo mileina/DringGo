@@ -4,7 +4,7 @@ import letterService from '../api/letterService';
 const CreateLetterForm: React.FC = () => {
   const [formData, setFormData] = useState({
     text: '',
-    from: '',
+    sender: '',
     target: '',
   });
   const [message, setMessage] = useState<string | null>(null);
@@ -29,7 +29,7 @@ const CreateLetterForm: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <label>
           From:
-          <input type="text" name="from" value={formData.from} onChange={handleChange} />
+          <input type="text" name="sender" value={formData.sender} onChange={handleChange} />
         </label>
         <label>
           To:
