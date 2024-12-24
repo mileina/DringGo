@@ -1,15 +1,19 @@
 import React from 'react';
-import '../styles/door.css';
+import '../styles/Door.css';
 
 interface DoorProps {
-  isOpen: boolean;
+  isVisible: boolean;
+  onClick?: () => void;
 }
 
-const Door: React.FC<DoorProps> = ({ isOpen }) => {
+const Door: React.FC<DoorProps> = ({ isVisible, onClick }) => {
   return (
-    <div className={`door ${isOpen ? 'open' : ''}`}>
-      <div className="door-left"></div>
-      <div className="door-right"></div>
+    <div
+      className={`door ${isVisible ? 'visible' : ''}`}
+      onClick={onClick}
+    >
+      <div className="door-window"></div>
+      <div className="door-handle"></div>
     </div>
   );
 };

@@ -1,13 +1,18 @@
 import React from 'react';
+import deliveryPersonImage from '../assets/delivery-person.png';
 import '../styles/delivery-person.css';
 
 interface DeliveryPersonProps {
-  isWalking: boolean;
+  isVisible: boolean;
 }
 
-const DeliveryPerson: React.FC<DeliveryPersonProps> = ({ isWalking }) => {
+const DeliveryPerson: React.FC<DeliveryPersonProps> = ({ isVisible }) => {
   return (
-    <div className={`delivery-person ${isWalking ? 'walking' : ''}`}></div>
+    <img
+      src={deliveryPersonImage}
+      alt="Delivery Person"
+      className={`delivery-person ${isVisible ? 'visible' : 'hidden'}`}
+    />
   );
 };
 

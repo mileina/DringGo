@@ -1,6 +1,6 @@
 .truck-container {
     position: absolute;
-    bottom: 30%;
+    bottom: 10%;
     transform: translateX(-50%);
     transition: left 2s ease, opacity 1s ease;
     width: 30vw;
@@ -63,3 +63,9 @@
     right: 12%;
   }
   
+  @media (max-width: 768px) {
+    .truck-container {
+      width: 60vw;
+      bottom: 15%;
+    }
+  }
