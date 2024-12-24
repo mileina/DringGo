@@ -22,8 +22,10 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
   const [showLetterMessage, setShowLetterMessage] = useState(false);
   const [truckReturn, setTruckReturn] = useState(false);
   const [finishRoute, setFinishRoute] = useState(false);
+  const [isAnimationComplete, setIsAnimationComplete] = useState(false);
 
   const handleDoorClick = () => {
+    if (!isAnimationComplete) return;
     setShowClickMessage(false);
     setShowTocMessage(false);
     setShowLetterMessage(true);
@@ -42,6 +44,7 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
   useEffect(() => {
     let isCancelled = false;
     if (isStopped) {
+      setIsAnimationComplete(false);
       (async () => {
         await delay(2000);
         if (isCancelled) return;
@@ -54,6 +57,11 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
         if (isCancelled) return;
         setShowTocMessage(true);
         const audio = new Audio(tocSound);
+        audio.addEventListener('ended', () => {
+          if (!isCancelled) {
+            setIsAnimationComplete(true);
+          }
+        });
         audio.play();
       })();
     } else {
@@ -64,6 +72,7 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
       setShowLetterMessage(false);
       setTruckReturn(false);
       setFinishRoute(false);
+      setIsAnimationComplete(false);
     }
     return () => {
       isCancelled = true;
@@ -111,14 +120,24 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
           />
         </div>
       )}
-      {showDoor && <Door isVisible={showDoor} onClick={handleDoorClick} />}
+
+      {showDoor && (
+        <Door
+          isVisible={showDoor}
+          onClick={handleDoorClick}
+        />
+      )}
+
       {showDeliveryPerson && <DeliveryPerson isVisible={showDeliveryPerson} />}
+
       {showClickMessage && <KnockText isVisible message="Cliquez sur la porte" />}
+
       {showTocMessage && <KnockText isVisible message="Toc Toc !" className="toc" />}
+
       {showLetterMessage && (
         <LetterMessage
           isVisible
-          message="Desolé j'avais pas d'argent pour Noel et j'ai trouvé cette mini application pour te dire que je t'ai pas oublié. 💖 Joyeux noel!"
+          message="Désolé, je n’avais pas d’argent pour Noël. J’ai plutôt créé cette mini application pour te montrer que je ne t’ai pas oublié. 💖 Joyeux Noël !"
         />
       )}
     </div>
