@@ -18,7 +18,7 @@ const LetterMessage: React.FC<LetterMessageProps> = ({ isVisible, message }) => 
   return (
     <div className="letter-message" onClick={handleLetterClick}>
       <div className={`letter-content ${isOpen ? 'open' : ''}`}>
-        <h1>La Mil</h1>
+        <h1>Mil</h1>
         <p>{message}</p>
       </div>
       <div className="envelope"></div>

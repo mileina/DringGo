@@ -6,6 +6,7 @@ import Door from './Door';
 import DeliveryPerson from './DeliveryPerson';
 import KnockText from './KnockText';
 import LetterMessage from './LetterMessage';
+import Snowfall from 'react-snowfall';
 import '../styles/Truck.css';
 
 interface TruckProps {
@@ -56,6 +57,7 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
         await delay(500);
         if (isCancelled) return;
         setShowTocMessage(true);
+
         const audio = new Audio(tocSound);
         audio.addEventListener('ended', () => {
           if (!isCancelled) {
@@ -89,6 +91,7 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
         width: '100vw',
         height: '100vh',
         position: 'relative',
+        overflow: 'hidden' // Important pour la neige
       }}
     >
       {!showDoor && (
@@ -129,16 +132,26 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
       )}
 
       {showDeliveryPerson && <DeliveryPerson isVisible={showDeliveryPerson} />}
-
       {showClickMessage && <KnockText isVisible message="Cliquez sur la porte" />}
-
       {showTocMessage && <KnockText isVisible message="Toc Toc !" className="toc" />}
 
       {showLetterMessage && (
-        <LetterMessage
-          isVisible
-          message="Désolé, je n’avais pas d’argent pour Noël. J’ai plutôt créé cette mini application pour te montrer que je ne t’ai pas oublié. 💖 Joyeux Noël !"
-        />
+        <>
+          <LetterMessage
+            isVisible
+            message="Désolé, je n’avais pas d’argent pour Noël. J’ai plutôt créé cette mini application pour te montrer que je ne t’ai pas oublié. 💖 Joyeux Noël !"
+          />
+          <Snowfall
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+            snowflakeCount={200}
+          />
+        </>
       )}
     </div>
   );
