@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                // Compilation vers ECMAScript 6
+      "module": "CommonJS",           // Module utilisé par Node.js
+      "rootDir": "./src",             // Dossier source
+      "outDir": "./dist",             // Dossier de sortie après compilation
+      "strict": true,                 // Activer les vérifications strictes
+      "esModuleInterop": true,        // Compatibilité avec les modules ES6
+      "skipLibCheck": true,           // Ignore les vérifications des types des dépendances
+      "resolveJsonModule": true       // Permet l'importation de fichiers JSON
+    },
+    "include": ["src/**/*.ts"],        // Inclure tous les fichiers TypeScript dans src/
+    "exclude": ["node_modules", "dist"] // Exclure ces dossiers
+  }
+  

@@ -1,0 +1,42 @@
+.door {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  width: 100px;
+  height: 200px;
+  background-color: #DAA520;
+  border: 4px solid #8B4513;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.door.visible {
+  opacity: 1;
+}
+
+.door-window {
+  position: absolute;
+  top: 10%;
+  width: 70%;
+  height: 40%;
+  background-color: #87CEEB;
+  border: 2px solid #8B4513;
+  border-radius: 2px;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent);
+  background-size: 10px 10px;
+}
+
+.door-handle {
+  position: absolute;
+  top: 60%;
+  width: 20px;
+  height: 5px;
+  background-color: #8B4513;
+  border-radius: 2px;
+  left: 65%;
+}

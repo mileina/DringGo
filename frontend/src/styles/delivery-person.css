@@ -1,0 +1,14 @@
+.delivery-person {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  width: 130px;
+  height: auto;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.delivery-person.visible {
+  opacity: 1;
+}
