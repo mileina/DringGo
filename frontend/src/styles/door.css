@@ -1,0 +1,27 @@
+.door {
+    position: absolute;
+    bottom: 20px;
+    left: 200px;
+    width: 100px;
+    height: 150px;
+    display: flex;
+  }
+  
+  .door-left,
+  .door-right {
+    background: brown;
+    width: 50%;
+    height: 100%;
+    transition: transform 1s ease;
+  }
+  
+  .door.open .door-left {
+    transform: rotateY(-90deg);
+    transform-origin: left center;
+  }
+  
+  .door.open .door-right {
+    transform: rotateY(90deg);
+    transform-origin: right center;
+  }
+  
