@@ -4,7 +4,7 @@ const initializeDatabase = async () => {
   const createLettersTableQuery = `
     CREATE TABLE IF NOT EXISTS letters (
       id INT AUTO_INCREMENT PRIMARY KEY,
-      text VARCHAR(255) NOT NULL,
+      text LONGTEXT NOT NULL,
       sender VARCHAR(255) NOT NULL,
       target VARCHAR(255) NOT NULL
     );

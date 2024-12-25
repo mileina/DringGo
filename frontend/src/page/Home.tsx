@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Truck from '../components/Truck';
 
 const Home: React.FC = () => {
   const [isStopped, setIsStopped] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const handleTruckStop = () => {
     setIsStopped(true);
   };
+  /*
+  useEffect(() => {
+    // Simuler un clic sur le bouton après 2 secondes
+    const timer = setTimeout(() => {
+      buttonRef.current?.click();
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);*/
 
   return (
     <div
@@ -20,6 +30,7 @@ const Home: React.FC = () => {
     >
       <Truck isStopped={isStopped} />
       <button
+        ref={buttonRef}
         onClick={handleTruckStop}
         style={{
           position: 'absolute',

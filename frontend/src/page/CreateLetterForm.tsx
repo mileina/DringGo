@@ -19,6 +19,16 @@ const CreateLetterForm: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const handleHome = () => {
+    setShowMessage(false);
+    setFormData({ text: '', sender: '', target: '' });
+    setShortUrl(null);
+    setMessage(null);
+    setIsAnimating(false);
+    setEnvelopeAnimating(false);
+    navigate('/');
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -69,32 +79,32 @@ const CreateLetterForm: React.FC = () => {
       <Snowfall />
       {!showMessage && (
         <div className={`letter-container ${isAnimating ? 'animating' : ''}`}>
-          <h2>Create Your Letter</h2>
+          <h2>Envoyez votre lettre</h2>
           {message && <p className="message">{message}</p>}
           <form onSubmit={handleSubmit} className="letter-form">
             <div className="letter">
               <div className="letter-header">
                 <label>
-                  From:
+                  Par :
                   <input
                     type="text"
                     name="sender"
                     value={formData.sender}
                     onChange={handleChange}
-                    placeholder="Enter sender's name"
+                    placeholder="Entrez le nom de l'expéditeur"
                     required
                   />
                 </label>
               </div>
               <div className="letter-body">
                 <label>
-                  To:
+                  Pour :
                   <input
                     type="text"
                     name="target"
                     value={formData.target}
                     onChange={handleChange}
-                    placeholder="Enter recipient's name"
+                    placeholder="Entrez le nom du destinataire"
                     required
                   />
                 </label>
@@ -104,14 +114,14 @@ const CreateLetterForm: React.FC = () => {
                     name="text"
                     value={formData.text}
                     onChange={handleChange}
-                    placeholder="Write your message here"
+                    placeholder="Entrez votre message"
                     required
                   />
                 </label>
               </div>
               <div className="letter-footer">
                 <button type="submit" className="submit-button" disabled={isAnimating}>
-                  Send Letter
+                  Envoyez sa lettre
                 </button>
               </div>
             </div>
@@ -135,7 +145,7 @@ const CreateLetterForm: React.FC = () => {
                   <br />
                 </>
               )}
-              <button onClick={() => navigate('/')} className="submit-button">
+              <button onClick={() => handleHome()} className="submit-button">
                 Retour à l'accueil
               </button>
             </div>

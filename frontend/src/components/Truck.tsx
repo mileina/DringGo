@@ -72,8 +72,10 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
           }
         });
         audio.play();
-        setShowClickMessage(true);
+        await delay(1000);
         setShowTocMessage(true);
+        await delay(3000);
+        setShowClickMessage(true);
       })();
     } else {
       setShowDoor(false);

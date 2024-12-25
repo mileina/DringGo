@@ -14,6 +14,7 @@ const LetterMessage: React.FC<LetterMessageProps> = ({ isVisible, letterId }) =>
     target?: string;
     text?: string;
   } | null>(null);
+  const [envelopeWidth, setEnvelopeWidth] = useState<number>(200); 
 
   useEffect(() => {
     if (isVisible && letterId) {
@@ -33,6 +34,11 @@ const LetterMessage: React.FC<LetterMessageProps> = ({ isVisible, letterId }) =>
 
       fetchLetterData();
     }
+    const envelope = document.querySelector('.envelopeHome');
+    if (envelope) {
+      const width = envelope.getBoundingClientRect().width;
+      setEnvelopeWidth(width);
+    }
   }, [isVisible, letterId]);
 
   if (!isVisible) return null;
@@ -41,13 +47,21 @@ const LetterMessage: React.FC<LetterMessageProps> = ({ isVisible, letterId }) =>
     setIsOpen(!isOpen);
   };
 
+  const truncateText = (text: string | undefined, maxLength: number) => {
+    if (!text) return '';
+    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+  };
+
   return (
     <div className="letter-message" onClick={handleLetterClick}>
-      <div className={`letter-content ${isOpen ? 'open' : ''}`}>
+      <div className={`letter-content ${isOpen ? 'open' : ''}`}
+      style={{ maxWidth: `${envelopeWidth}px` }}>
         {messageData ? (
           <>
             <h1>{messageData.target}</h1>
-            <p className="text">{messageData.text}</p>
+            <p className="text">{isOpen
+                ? messageData.text // Afficher le texte complet si la lettre est ouverte
+                : truncateText(messageData.text, 50)}</p>
             <p className="sender">{messageData.sender}</p>
           </>
         ) : (
