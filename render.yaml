@@ -10,7 +10,7 @@ services:
       - key: DB_HOST
         value: mysql_db
       - key: DB_USER
-        value: your_db_user
+        value: dringgo
       - key: DB_PASSWORD
         value: your_db_password
       - key: DB_NAME
