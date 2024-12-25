@@ -1,15 +1,16 @@
+# Dockerfile pour le backend
 FROM node:18
 
 WORKDIR /app
 
-# Copier les fichiers package.json pour installer les dépendances
-COPY package*.json ./
+# Copier les fichiers package.json du dossier backend
+COPY backend/package*.json ./
 
 # Installer les dépendances
 RUN npm install
 
 # Copier le reste du code
-COPY . .
+COPY backend/ ./
 
 # Exposer le port pour le backend
 EXPOSE 3000
