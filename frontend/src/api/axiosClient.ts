@@ -1,15 +1,14 @@
 import axios from 'axios';
 
+// Utiliser la variable d'environnement définie dans vite.config.ts
 const axiosClient = axios.create({
-  baseURL: process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000/api' // URL du backend en local
-    : 'https://dringgo-backend.onrender.com/api', // URL du backend déployé
+  baseURL: process.env.BASE_URL || '/api', // Utilise '/api' en local grâce au proxy
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Intercepteurs pour gérer les erreurs globales (optionnel)
+// Intercepteurs pour gérer les erreurs globales
 axiosClient.interceptors.response.use(
   (response) => {
     return response;
