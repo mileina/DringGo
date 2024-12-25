@@ -40,12 +40,12 @@ Avant de commencer, assurez-vous d'avoir les outils suivants installés :
 1. **Configurer les variables d'environnement** :
    - Créez un fichier `.env` dans le dossier `backend/` avec les valeurs suivantes :
      ```env
-     PORT=3000
-     DB_HOST=db
-     DB_PORT=3306
-     DB_USER=
-     DB_PASSWORD=
-     DB_NAME=
+PORT=3000
+DB_HOST=mysql_db
+DB_PORT=3306
+DB_USER=dringgo
+DB_PASSWORD=dringgo
+DB_NAME=dringgo
      ```
 2. **Démarrer les services** :
    - Depuis la racine du projet, exécutez la commande suivante :

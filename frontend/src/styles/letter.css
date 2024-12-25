@@ -22,7 +22,7 @@
   top: 40px;
   left: 10%;
   width: 80%;
-  height: auto;
+  height: 40%;
   background-color: #fff;
   border: 4px solid #000;
   box-sizing: border-box;
@@ -31,21 +31,14 @@
   font-size: 10px;
   line-height: 1.2;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
-  overflow-x: hidden;
-  transition: height 0.4s ease;
-  word-wrap: break-word;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.4s ease;
 }
 
 .letter-content.open {
   height: auto;
-  width: auto;
-  max-height: 500px; /* Contrôle la hauteur maximale pour le défilement */
   top: -80px;
-  left: -0.5px;
+  max-height: 80%;
 }
 
 .letter-content h1 {
@@ -58,23 +51,24 @@
   margin: 0;
   color: #333;
   word-wrap: break-word;
-  white-space: pre-wrap; /* Conserve les retours à la ligne */
+  white-space: pre-wrap; /* Pour conserver les sauts de ligne */
 }
 
 .letter-content p.text {
-  flex-grow: 1; /* Prend tout l'espace disponible entre l'en-tête et le bas */
+  flex-grow: 1; /* Prend l'espace entre l'en-tête et la signature */
   font-size: 12px;
   color: #333;
   margin: 0;
-  padding-bottom: 3em;
 }
 
 .letter-content p.sender {
-  align-self: flex-end; /* Place l'expéditeur à droite */
+  align-self: flex-end; /* Signature alignée à droite */
   font-style: italic;
   font-size: 10px;
   color: #333;
   margin: 0;
+  margin-top: 8px;
+  text-align: right; /* Aligne le texte à droite */
 }
 
 .envelopeHome {

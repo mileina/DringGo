@@ -7,6 +7,7 @@ import DeliveryPerson from './DeliveryPerson';
 import KnockText from './KnockText';
 import LetterMessage from './LetterMessage';
 import Snowfall from 'react-snowfall';
+import logo from '../assets/logo.png';
 import '../styles/Truck.css';
 import { useParams } from 'react-router-dom';
 
@@ -26,14 +27,13 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
   const [finishRoute, setFinishRoute] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
   const [letterId, setLetterId] = useState<number | null>(null);
-  const { id } = useParams<{ id: string }>(); // Récupérer l'ID depuis l'URL
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     if (id) {
-      setLetterId(parseInt(id, 10)); // Convertir l'ID en nombre
+      setLetterId(parseInt(id, 10));
     }
   }, [id]);
-
 
   const handleDoorClick = () => {
     if (!isAnimationComplete) return;
@@ -102,7 +102,7 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
         width: '100vw',
         height: '100vh',
         position: 'relative',
-        overflow: 'hidden' // Important pour la neige
+        overflow: 'hidden',
       }}
     >
       {!showDoor && (
@@ -135,13 +135,7 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
         </div>
       )}
 
-      {showDoor && (
-        <Door
-          isVisible={showDoor}
-          onClick={handleDoorClick}
-        />
-      )}
-
+      {showDoor && <Door isVisible={showDoor} onClick={handleDoorClick} />}
       {showDeliveryPerson && <DeliveryPerson isVisible={showDeliveryPerson} />}
       {showClickMessage && <KnockText isVisible message="Cliquez sur la porte" />}
       {showTocMessage && <KnockText isVisible message="Toc Toc !" className="toc" />}
@@ -150,7 +144,6 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
         <>
           <LetterMessage
             isVisible
-            // ID de la lettre pour récupérer les données via l'API via lurl
             letterId={letterId ?? 0}
           />
           <Snowfall
@@ -165,6 +158,30 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
           />
         </>
       )}
+
+      <footer className="footer">
+        <div className="footer-content">
+          <img src={logo} alt="Logo" className="footer-logo" />
+          <span>
+            by{' '}
+            <a
+              href="https://www.linkedin.com/in/pinya-meas-a3b70a133/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mil
+            </a>{' '}
+            &{' '}
+            <a
+              href="https://www.linkedin.com/in/favareille/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ape
+            </a>
+          </span>
+        </div>
+      </footer>
     </div>
   );
 };
