@@ -9,6 +9,11 @@
     position: relative;
   }
   
+  .letter-header input,
+.letter-body input,
+.letter-body textarea {
+  color: #000; /* Définit la couleur de la police en noir */
+}
   .letter-container {
     background: #fff8e1;
     border: 1px solid #bdbdbd;
