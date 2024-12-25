@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, {useState, useRef } from 'react';
 import Truck from '../components/Truck';
 
 const Home: React.FC = () => {
