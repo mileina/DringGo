@@ -26,6 +26,7 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
   const [truckReturn, setTruckReturn] = useState(false);
   const [finishRoute, setFinishRoute] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [letterId, setLetterId] = useState<number | null>(null);
   const { id } = useParams<{ id: string }>();
 
@@ -35,8 +36,12 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
     }
   }, [id]);
 
-  const handleDoorClick = () => {
-    if (!isAnimationComplete) return;
+  const handleClick = () => {
+    if (!isAnimationComplete) {
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 2000);
+      return;
+    }
     setShowClickMessage(false);
     setShowTocMessage(false);
     setShowLetterMessage(true);
@@ -135,17 +140,15 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
         </div>
       )}
 
-      {showDoor && <Door isVisible={showDoor} onClick={handleDoorClick} />}
-      {showDeliveryPerson && <DeliveryPerson isVisible={showDeliveryPerson} />}
-      {showClickMessage && <KnockText isVisible message="Cliquez sur la porte" />}
+      {showDoor && <Door isVisible={showDoor} onClick={handleClick} />}
+      {showDeliveryPerson && (
+        <DeliveryPerson isVisible={showDeliveryPerson} onClick={handleClick} />
+      )}
+      {showClickMessage && <KnockText isVisible message="Cliquez sur la porte ou le livreur" />}
       {showTocMessage && <KnockText isVisible message="Toc Toc !" className="toc" />}
-
       {showLetterMessage && (
         <>
-          <LetterMessage
-            isVisible
-            letterId={letterId ?? 0}
-          />
+          <LetterMessage isVisible letterId={letterId ?? 0} />
           <Snowfall
             style={{
               position: 'absolute',
@@ -157,6 +160,15 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
             snowflakeCount={200}
           />
         </>
+      )}
+
+      {showPopup && (
+        <div className="popup">
+          <span role="img" aria-label="angry">
+            😠
+          </span>{' '}
+          Veuillez attendre la fin de l'animation
+        </div>
       )}
 
       <footer className="footer">
