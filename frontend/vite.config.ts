@@ -11,4 +11,7 @@ export default defineConfig({
       usePolling: true, // Important pour Docker
     },
   },
+  build: {
+    outDir: 'dist', // ou 'build', selon ce que vous préférez
+  }
 })
