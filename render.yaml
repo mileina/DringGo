@@ -1,28 +1,42 @@
+version: '3'
 services:
-  - type: web
-    name: dringgo-backend
-    env: docker
-    plan: free
-    dockerfilePath: ./backend/Dockerfile
-    buildCommand: ""
-    startCommand: ""
-    envVars:
-      - key: DB_HOST
-        value: mysql_db
-      - key: DB_USER
-        value: dringgo
-      - key: DB_PASSWORD
-        value: dringgo
-      - key: DB_NAME
-        value: dringgo
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=mysql_db
+      - DB_USER=dringgo
+      - DB_PASSWORD=dringgo
+      - DB_NAME=dringgo
+    depends_on:
+      - mysql_db
 
-  - type: web
-    name: dringgo-frontend
-    env: docker
-    plan: free
-    dockerfilePath: ./frontend/Dockerfile
-    buildCommand: ""
-    startCommand: ""
-    envVars:
-      - key: FRONTEND_URL
-        value: https://dringgo-backend.onrender.com
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - REACT_APP_BACKEND_URL=http://backend:3000
+    depends_on:
+      - backend
+
+  mysql_db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dringgo
+      MYSQL_USER: dringgo
+      MYSQL_PASSWORD: dringgo
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql_data:
