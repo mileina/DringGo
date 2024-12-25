@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:3000/api', // URL de base de votre backend
+  baseURL: process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000/api' // URL du backend en local
+    : 'https://dringgo-backend.onrender.com/api', // URL du backend déployé
   headers: {
     'Content-Type': 'application/json',
   },
