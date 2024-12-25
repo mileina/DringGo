@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Door.css';
+import '../styles/door.css';
 
 interface DoorProps {
   isVisible: boolean;
