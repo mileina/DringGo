@@ -94,15 +94,3 @@
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
-@media (max-width: 768px) {
-  .letter-message {
-    width: 90%;
-    height: auto;
-  }
-
-  .letter-content {
-    top: 30px;
-    height: auto;
-    max-height: 80vh;
-  }
-}
