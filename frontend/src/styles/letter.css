@@ -73,3 +73,19 @@
   box-sizing: border-box;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
+
+.letter-content p.sender {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-style: italic;
+  font-size: 10px;
+  color: #333;
+  margin: 0;
+}
+
+.letter-content p.text {
+  position: relative;
+  font-size: 14px;
+  color: #333;
+}

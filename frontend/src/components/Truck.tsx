@@ -57,16 +57,13 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
     if (isStopped) {
       setIsAnimationComplete(false);
       (async () => {
-        await delay(2000);
+        await delay(2500);
         if (isCancelled) return;
         setShowDoor(true);
-        await delay(1000);
-        if (isCancelled) return;
-        setShowDeliveryPerson(true);
-        setShowClickMessage(true);
         await delay(500);
         if (isCancelled) return;
-        setShowTocMessage(true);
+        setShowDeliveryPerson(true);
+        if (isCancelled) return;
 
         const audio = new Audio(tocSound);
         audio.addEventListener('ended', () => {
@@ -75,6 +72,8 @@ const Truck: React.FC<TruckProps> = ({ isStopped }) => {
           }
         });
         audio.play();
+        setShowClickMessage(true);
+        setShowTocMessage(true);
       })();
     } else {
       setShowDoor(false);
