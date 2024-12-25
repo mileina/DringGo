@@ -3,8 +3,8 @@ import { db } from './database';
 const initializeDatabase = async () => {
   const createLettersTableQuery = `
     CREATE TABLE IF NOT EXISTS letters (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      text LONGTEXT NOT NULL,
+      id SERIAL PRIMARY KEY,
+      text TEXT NOT NULL,
       sender VARCHAR(255) NOT NULL,
       target VARCHAR(255) NOT NULL
     );
@@ -12,7 +12,7 @@ const initializeDatabase = async () => {
 
   const createShortUrlsTableQuery = `
     CREATE TABLE IF NOT EXISTS short_urls (
-      id INT AUTO_INCREMENT PRIMARY KEY,
+      id SERIAL PRIMARY KEY,
       letter_id INT NOT NULL,
       short_code VARCHAR(10) NOT NULL UNIQUE,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -21,9 +21,9 @@ const initializeDatabase = async () => {
   `;
 
   try {
-    // Exécuter les requêtes une par une
-    await db.execute(createLettersTableQuery);
-    await db.execute(createShortUrlsTableQuery);
+    // Exécuter les requêtes une par une avec `query`
+    await db.query(createLettersTableQuery);
+    await db.query(createShortUrlsTableQuery);
     console.log('Database initialized successfully.');
   } catch (error) {
     console.error('Error initializing database:', error);
