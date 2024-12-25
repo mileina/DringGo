@@ -10,19 +10,11 @@ export default defineConfig({
     watch: {
       usePolling: true, // Important pour Docker
     },
-    proxy: {
-      // Rediriger les appels API locaux vers le backend
-      '/api': {
-        target: 'http://localhost:3000', // Backend local pendant le développement
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api'),
-      },
-    },
   },
   define: {
-    // Définir des variables d'environnement pour la production
+    // Utiliser uniquement le backend déployé
     'process.env': {
-      BASE_URL: 'https://dringgo-backend.onrender.com/api',
+      BASE_URL: 'https://dringgo-backend.onrender.com/api', // URL du backend déployé
     },
   },
 });
