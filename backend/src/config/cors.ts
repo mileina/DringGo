@@ -1,7 +1,7 @@
 import cors from 'cors';
 
 const corsOptions = {
-  origin: 'http://localhost:5173', // Autorise uniquement le frontend
+  origin: 'https://dringgo-frontend.onrender.com', // Remplace par l'URL de ton frontend déployé
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true, // Autorise les cookies
 };
